@@ -5,7 +5,7 @@ const Button = ({ submitTodo }) => (
     <View style={styles.buttonContainer}>
         <TouchableHighlight
             underlayColor='#efefef'
-            style={styles.Button}
+            style={styles.button}
             onPress={submitTodo}>
             <Text style={styles.submit}>Submit</Text>
         </TouchableHighlight>
@@ -27,11 +27,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'rgba(0,0,0,.1)',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     submit: {
-        height: 50,
-        fontWeight: '600'
+        fontWeight: '600',
     }
 })
 

@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, ScrollView } from 'react-native'
 import Heading from './component/Heading'
 import Input from './component/Input'
 import Button from './component/Button'
+import TodoList from './component/TodoList'
 
 let todoIndex = 0;
 
@@ -19,7 +20,6 @@ export default class App extends Component {
   }
 
   submitTodo() {
-    console.log(this.state);
     if(this.state.inputValues.match(/^\s*$/)) {
       return;
     }
@@ -37,8 +37,25 @@ export default class App extends Component {
     });
   }
 
+  toggleComplete = (todoIndex) => {
+     let todos = this.state.todos
+     todos.forEach((todo) => {
+       if(todo.todoIndex === todoIndex) {
+         todo.complete = !todo.complete
+       }
+     })
+     this.setState({todos})
+  }
+  
+  deleteTodo = (todoIndex) => {
+    console.log('delete:', todoIndex)
+    let {todos} = this.state
+    todos = todos.filter((todo) => todo.todoIndex !== todoIndex)
+    this.setState({todos})
+  }
+
   render() {
-    const { inputValue } = this.state;
+    const { inputValue, todos } = this.state;
 
     return (
       <View style={styles.container}>
@@ -49,6 +66,10 @@ export default class App extends Component {
           inputValue={ inputValue }
           inputChange={ (text) => this.inputChange(text) }
         ></Input>
+        <TodoList 
+          todos={todos}
+          toggleComplete={this.toggleComplete}
+          deleteTodo={this.deleteTodo}></TodoList>
         <Button submitTodo={() => this.submitTodo()}></Button>
       </ScrollView>
     </View>
@@ -60,8 +81,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   content: {
     flex: 1,
