@@ -54,6 +54,10 @@ export default class App extends Component {
     this.setState({todos})
   }
 
+  setType = (type) => {
+      this.setState({ type })
+  }
+
   render() {
     const { inputValue, todos } = this.state;
 
