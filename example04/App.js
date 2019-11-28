@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import getStyleSheet from './styles/styles';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native'
+import getStyleSheet from './styles/styles'
+
 
 const themes = ['dark', 'light', 'red'];
 
